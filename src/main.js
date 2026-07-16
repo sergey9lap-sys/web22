@@ -1,0 +1,101 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+import SplitType from "split-type";
+
+gsap.registerPlugin(ScrollTrigger);
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!reduceMotion) {
+  const lenis = new Lenis({ duration: 1.3, smoothWheel: true });
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  const softFrom = { autoAlpha: 0, y: 24, filter: "blur(7px)" };
+  const softTo = { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 1.15, ease: "power2.out" };
+
+  if (document.querySelector(".hero")) {
+    const hero = gsap.timeline({ defaults: { ease: "power2.out" } });
+    hero
+      .from(".hero h1", { autoAlpha: 0, y: 28, filter: "blur(8px)", duration: 1.15 })
+      .from(".hero__lead", { autoAlpha: 0, y: 20, filter: "blur(5px)", duration: 1 }, "-=.62")
+      .from(".hero__portrait img", { autoAlpha: 0, x: 42, filter: "blur(8px)", duration: 1.35, ease: "power3.out" }, "-=.42")
+      .from(".hero .button", { autoAlpha: 0, y: 18, duration: .85 }, "-=.48")
+      .from([".eyebrow", ".hero__type", ".hero__note"], { autoAlpha: 0, y: 14, duration: .75, stagger: .1 }, "-=.38")
+      .from(".portrait-name", { autoAlpha: 0, y: 12, duration: .75 }, "-=.5")
+      .from(".hero__markers span", { autoAlpha: 0, y: 14, duration: .75, stagger: .12 }, "-=.5");
+
+    gsap.to(".hero__portrait img", { yPercent: 5, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1.2 } });
+  }
+
+  gsap.utils.toArray("main .section, .final").forEach((section) => {
+    const text = [...section.querySelectorAll(":scope .section-tag, :scope h2, :scope .split-head > p, :scope .lead")]
+      .filter((element) => !element.matches(".text-reveal, .char-reveal"));
+    if (!text.length) return;
+    gsap.fromTo(text, softFrom, {
+      ...softTo,
+      stagger: .13,
+      scrollTrigger: { trigger: section, start: "top 82%", once: true },
+    });
+  });
+
+  gsap.set(".reveal", { autoAlpha: 0, y: 28, filter: "blur(6px)" });
+  ScrollTrigger.batch(".reveal", {
+    start: "top 90%",
+    once: true,
+    interval: .12,
+    batchMax: 6,
+    onEnter: (items) => gsap.to(items, { ...softTo, stagger: .12, overwrite: true }),
+  });
+
+  gsap.utils.toArray(".models, .evolution-track, .registration__meta, .form, .thanks-card").forEach((element) => {
+    gsap.fromTo(element, { autoAlpha: 0, y: 22 }, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 1.1,
+      ease: "power2.out",
+      scrollTrigger: { trigger: element, start: "top 88%", once: true },
+    });
+  });
+
+  gsap.utils.toArray(".text-reveal").forEach((element) => {
+    const split = new SplitType(element, { types: "words" });
+    gsap.fromTo(split.words, { autoAlpha: 0, yPercent: 75, filter: "blur(5px)" }, {
+      autoAlpha: 1,
+      yPercent: 0,
+      filter: "blur(0px)",
+      duration: .78,
+      stagger: element.matches(".statement") ? .025 : .055,
+      ease: "power2.out",
+      scrollTrigger: { trigger: element, start: "top 86%", once: true },
+    });
+  });
+
+  gsap.utils.toArray(".char-reveal").forEach((element) => {
+    const split = new SplitType(element, { types: "words, chars" });
+    gsap.fromTo(split.chars, { autoAlpha: 0, y: 18 }, {
+      autoAlpha: 1,
+      y: 0,
+      duration: .5,
+      stagger: .018,
+      ease: "power2.out",
+      scrollTrigger: { trigger: element, start: "top 86%", once: true },
+    });
+  });
+}
+
+const range = document.querySelector("[data-range]");
+const format = new Intl.NumberFormat("ru-RU");
+range?.addEventListener("input", () => {
+  document.querySelector("[data-members]").textContent = range.value;
+  document.querySelector("[data-revenue]").textContent = `${format.format(Number(range.value) * 2900)} ₽`;
+  range.style.setProperty("--progress", `${((range.value - 100) / 400) * 100}%`);
+});
+range?.dispatchEvent(new Event("input"));
+
+document.querySelector("[data-form]")?.addEventListener("submit", (event) => { event.preventDefault(); location.href = "/thanks/"; });
+
+const cookie = document.querySelector("[data-cookie]");
+if (cookie && localStorage.getItem("web2207-cookie-consent") !== "accepted") cookie.hidden = false;
+cookie?.querySelectorAll("[data-cookie-accept]").forEach((button) => button.addEventListener("click", () => { localStorage.setItem("web2207-cookie-consent", "accepted"); cookie.hidden = true; }));
