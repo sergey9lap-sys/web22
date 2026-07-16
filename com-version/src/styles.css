@@ -79,3 +79,14 @@
 .getcourse-widget{min-height:420px;padding:18px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
 .getcourse-widget iframe{display:block;width:100%!important;max-width:100%;border:0}
 @media(max-width:600px){.getcourse-widget{min-height:380px;padding:8px}}
+
+/* com-version: photo 153 is integrated as the hero background */
+.variant-com .hero{background:radial-gradient(circle at 72% 34%,rgba(27,105,70,.68),transparent 34%),linear-gradient(118deg,#021e17,#073628 58%,#03271d)}
+.variant-com .hero__grid{grid-template-columns:1fr}
+.variant-com .hero__copy{max-width:760px}
+.variant-com .hero__portrait{position:absolute;z-index:1;top:0;right:-3vw;width:min(58vw,880px);height:100%;margin:0;opacity:.74;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.2) 18%,#000 48%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.2) 18%,#000 48%)}
+.variant-com .hero__portrait:before{content:"";position:absolute;z-index:3;inset:0;background:linear-gradient(90deg,rgba(2,30,23,.88),transparent 42%),linear-gradient(0deg,rgba(2,30,23,.55),transparent 38%);border:0;border-radius:0;filter:none}
+.variant-com .hero__portrait img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 18%;transform:none;filter:saturate(.8) contrast(1.07)}
+.variant-com .hero__markers{z-index:5}
+@media(max-width:900px){.variant-com .hero__portrait{top:0;right:-12%;width:76%;height:100%;opacity:.62;margin:0}.variant-com .hero__copy{max-width:68%}}
+@media(max-width:600px){.variant-com .hero{min-height:690px}.variant-com .hero__grid{display:block;min-height:690px}.variant-com .hero__copy{max-width:none}.variant-com .hero__portrait{top:0;right:-30%;width:92%;height:100%;opacity:.56}.variant-com .hero__portrait img{object-position:center top}.variant-com .hero__portrait:before{background:linear-gradient(90deg,rgba(2,30,23,.92),transparent 58%),linear-gradient(0deg,rgba(2,30,23,.72),transparent 45%)}}
