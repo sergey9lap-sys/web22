@@ -84,7 +84,7 @@
 .variant-com .hero{background:radial-gradient(circle at 72% 34%,rgba(27,105,70,.68),transparent 34%),linear-gradient(118deg,#021e17,#073628 58%,#03271d)}
 .variant-com .hero__grid{grid-template-columns:1fr}
 .variant-com .hero__copy{max-width:760px}
-.variant-com .hero__portrait{position:absolute;z-index:1;top:6%;right:2vw;width:min(46vw,700px);height:88%;margin:0;opacity:.76;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.55) 12%,#000 28%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.55) 12%,#000 28%)}
+.variant-com .hero__portrait{position:absolute;z-index:1;top:10%;right:4vw;width:min(40vw,610px);height:80%;margin:0;opacity:.76;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.55) 12%,#000 28%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.55) 12%,#000 28%)}
 .variant-com .hero__portrait:before{content:"";position:absolute;z-index:3;inset:0;background:linear-gradient(90deg,rgba(2,30,23,.62),transparent 26%),linear-gradient(0deg,rgba(2,30,23,.42),transparent 28%);border:0;border-radius:0;filter:none}
 .variant-com .hero__portrait img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 18%;transform:none;filter:saturate(.8) contrast(1.07)}
 .variant-com .hero__markers{z-index:5}
