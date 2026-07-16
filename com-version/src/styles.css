@@ -90,3 +90,6 @@
 .variant-com .hero__markers{z-index:5}
 @media(max-width:900px){.variant-com .hero__portrait{top:7%;right:-8%;width:62%;height:86%;opacity:.65;margin:0}.variant-com .hero__copy{max-width:68%}}
 @media(max-width:600px){.variant-com .hero{min-height:690px}.variant-com .hero__grid{display:block;min-height:690px}.variant-com .hero__copy{max-width:none}.variant-com .hero__portrait{top:9%;right:-18%;width:72%;height:78%;opacity:.62}.variant-com .hero__portrait img{object-position:center top}.variant-com .hero__portrait:before{background:linear-gradient(90deg,rgba(2,30,23,.7),transparent 40%),linear-gradient(0deg,rgba(2,30,23,.48),transparent 32%)}}
+.variant-com .section-cta{display:flex;width:330px;max-width:100%;min-height:60px;margin:46px auto 0}
+.variant-com .section-cta--author{margin:32px 0 0}
+@media(max-width:600px){.variant-com .section-cta,.variant-com .section-cta--author{width:100%;margin:34px 0 0}}
