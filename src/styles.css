@@ -64,8 +64,9 @@
   .portrait-name small{padding-right:7px;font-size:7px;letter-spacing:.1em}
   .portrait-name strong{font-size:10px}
   .button--mobile{display:flex;position:absolute;z-index:6;left:0;top:472px;width:100%;max-width:none;min-height:60px;padding-inline:22px}
-  .hero__markers{position:absolute;z-index:5;left:0;top:558px;bottom:auto;margin:0;padding:6px 13px;background:rgba(2,30,23,.9);backdrop-filter:blur(10px)}
-  .hero__markers span{padding:8px 0}
+  .hero__markers{position:absolute;z-index:5;left:0;top:558px;bottom:auto;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:6px 10px;background:rgba(2,30,23,.9);backdrop-filter:blur(10px)}
+  .hero__markers span{display:flex;min-width:0;align-items:center;justify-content:center;padding:12px 3px;border:0;font-size:9px;line-height:1.2;white-space:nowrap}
+  .hero__markers b{flex:0 0 auto;margin-right:6px;font-size:8px}
 }
 
 /* Footer copied from mk&mm */
