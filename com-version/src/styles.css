@@ -93,3 +93,11 @@
 .variant-com .section-cta{display:flex;width:330px;max-width:100%;min-height:60px;margin:46px auto 0}
 .variant-com .section-cta--author{margin:32px 0 0}
 @media(max-width:600px){.variant-com .section-cta,.variant-com .section-cta--author{width:100%;margin:34px 0 0}}
+
+/* Mobile product evolution: the complete path is visible without horizontal scrolling. */
+@media(max-width:600px){
+  .evolution-track{display:grid;grid-template-columns:1fr;gap:0;overflow:visible;margin-top:34px;padding:0;border:0;background:transparent}
+  .evolution-track span{display:block;width:100%;padding:15px 18px;border:1px solid var(--line);background:rgba(255,255,255,.025);white-space:normal;text-align:center;font-size:16px}
+  .evolution-track i{display:block;padding:4px 0;text-align:center;line-height:1;transform:rotate(90deg)}
+  .evolution-track .active{padding:15px 18px;border-color:var(--gold);background:var(--gold);color:var(--deep)}
+}

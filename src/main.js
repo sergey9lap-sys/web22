@@ -97,3 +97,29 @@ range?.dispatchEvent(new Event("input"));
 const cookie = document.querySelector("[data-cookie]");
 if (cookie && localStorage.getItem("web2207-cookie-consent") !== "accepted") cookie.hidden = false;
 cookie?.querySelectorAll("[data-cookie-accept]").forEach((button) => button.addEventListener("click", () => { localStorage.setItem("web2207-cookie-consent", "accepted"); cookie.hidden = true; }));
+
+const getcourseWidget = document.querySelector(".getcourse-widget");
+if (getcourseWidget) {
+  const bindThankYouRedirect = (iframe) => {
+    if (iframe.dataset.thankYouRedirectBound) return;
+    iframe.dataset.thankYouRedirectBound = "true";
+
+    let widgetReady = false;
+    const fallbackArm = window.setTimeout(() => { widgetReady = true; }, 5000);
+    iframe.addEventListener("load", () => {
+      if (!widgetReady) {
+        widgetReady = true;
+        window.clearTimeout(fallbackArm);
+        return;
+      }
+      window.location.assign("/thanks/");
+    });
+  };
+
+  getcourseWidget.querySelectorAll("iframe").forEach(bindThankYouRedirect);
+  new MutationObserver((mutations) => mutations.forEach((mutation) => mutation.addedNodes.forEach((node) => {
+    if (!(node instanceof Element)) return;
+    if (node.matches("iframe")) bindThankYouRedirect(node);
+    node.querySelectorAll?.("iframe").forEach(bindThankYouRedirect);
+  }))).observe(getcourseWidget, { childList: true, subtree: true });
+}

@@ -79,3 +79,11 @@
 .getcourse-widget{min-height:420px;padding:18px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
 .getcourse-widget iframe{display:block;width:100%!important;max-width:100%;border:0}
 @media(max-width:600px){.getcourse-widget{min-height:380px;padding:8px}}
+
+/* Mobile product evolution: the complete path is visible without horizontal scrolling. */
+@media(max-width:600px){
+  .evolution-track{display:grid;grid-template-columns:1fr;gap:0;overflow:visible;margin-top:34px;padding:0;border:0;background:transparent}
+  .evolution-track span{display:block;width:100%;padding:15px 18px;border:1px solid var(--line);background:rgba(255,255,255,.025);white-space:normal;text-align:center;font-size:16px}
+  .evolution-track i{display:block;padding:4px 0;text-align:center;line-height:1;transform:rotate(90deg)}
+  .evolution-track .active{padding:15px 18px;border-color:var(--gold);background:var(--gold);color:var(--deep)}
+}
