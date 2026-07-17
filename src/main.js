@@ -112,6 +112,14 @@ cookie?.querySelectorAll("[data-cookie-accept]").forEach((button) => button.addE
 
 const getcourseWidget = document.querySelector(".getcourse-widget");
 if (getcourseWidget) {
+  window.addEventListener("message", (event) => {
+    if (event.data?.type !== "web2207:registration-success") return;
+    const sentByWidget = [...getcourseWidget.querySelectorAll("iframe")].some((iframe) => iframe.contentWindow === event.source);
+    if (!sentByWidget) return;
+    getcourseWidget.classList.add("is-redirecting");
+    window.location.replace("/thanks/");
+  });
+
   const bindThankYouRedirect = (iframe) => {
     if (iframe.dataset.thankYouRedirectBound) return;
     iframe.dataset.thankYouRedirectBound = "true";
