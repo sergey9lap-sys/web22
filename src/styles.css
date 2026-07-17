@@ -89,3 +89,12 @@
   .evolution-track i{display:block;padding:4px 0;text-align:center;line-height:1;transform:rotate(90deg)}
   .evolution-track .active{padding:15px 18px;border-color:var(--gold);background:var(--gold);color:var(--deep)}
 }
+
+/* Main hero: reserve extra vertical room when narrow screens add title/body lines. */
+@media(max-width:430px){
+  .hero{min-height:780px}
+  .hero__grid{min-height:780px}
+  .portrait-name{bottom:-82px}
+  .button--mobile{top:548px}
+  .hero__markers{top:634px}
+}
