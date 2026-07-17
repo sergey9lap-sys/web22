@@ -5,9 +5,10 @@ import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let lenis;
 
 if (!reduceMotion) {
-  const lenis = new Lenis({ duration: 1.3, smoothWheel: true });
+  lenis = new Lenis({ duration: 1.3, smoothWheel: true });
   lenis.on("scroll", ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -94,6 +95,17 @@ range?.addEventListener("input", () => {
 });
 range?.dispatchEvent(new Event("input"));
 
+const registration = document.querySelector("#registration");
+document.querySelectorAll('a[href="#registration"]').forEach((link) => link.addEventListener("click", (event) => {
+  if (!registration) return;
+  event.preventDefault();
+  if (lenis) {
+    lenis.scrollTo(registration, { offset: 0, duration: 1.05, lock: true });
+  } else {
+    registration.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  }
+}));
+
 const cookie = document.querySelector("[data-cookie]");
 if (cookie && localStorage.getItem("web2207-cookie-consent") !== "accepted") cookie.hidden = false;
 cookie?.querySelectorAll("[data-cookie-accept]").forEach((button) => button.addEventListener("click", () => { localStorage.setItem("web2207-cookie-consent", "accepted"); cookie.hidden = true; }));
@@ -105,14 +117,20 @@ if (getcourseWidget) {
     iframe.dataset.thankYouRedirectBound = "true";
 
     let widgetReady = false;
-    const fallbackArm = window.setTimeout(() => { widgetReady = true; }, 5000);
+    const markInteraction = () => {
+      if (document.activeElement === iframe) widgetReady = true;
+    };
+    window.addEventListener("blur", markInteraction);
+    const fallbackArm = window.setTimeout(() => { widgetReady = true; }, 4000);
+
     iframe.addEventListener("load", () => {
       if (!widgetReady) {
         widgetReady = true;
         window.clearTimeout(fallbackArm);
         return;
       }
-      window.location.assign("/thanks/");
+      getcourseWidget.classList.add("is-redirecting");
+      window.location.replace("/thanks/");
     });
   };
 

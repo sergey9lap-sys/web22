@@ -78,6 +78,7 @@
 @media(max-width:600px){.desktop-keep{white-space:normal}.desktop-break{display:none}.footer{grid-template-columns:1fr;gap:28px}.footer__bottom{grid-column:auto;display:grid;gap:8px}}
 .getcourse-widget{min-height:420px;padding:18px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
 .getcourse-widget iframe{display:block;width:100%!important;max-width:100%;border:0}
+.getcourse-widget.is-redirecting{visibility:hidden}
 @media(max-width:600px){.getcourse-widget{min-height:380px;padding:8px}}
 
 /* com-version: photo 153 is integrated as the hero background */
