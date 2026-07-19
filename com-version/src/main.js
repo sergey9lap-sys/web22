@@ -7,6 +7,12 @@ gsap.registerPlugin(ScrollTrigger);
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let lenis;
 
+const resetInitialScroll = () => {
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  lenis?.scrollTo(0, { immediate: true, force: true });
+};
+window.addEventListener("pageshow", resetInitialScroll);
+
 if (!reduceMotion) {
   lenis = new Lenis({ duration: 1.3, smoothWheel: true });
   lenis.on("scroll", ScrollTrigger.update);
@@ -119,33 +125,4 @@ if (getcourseWidget) {
     getcourseWidget.classList.add("is-redirecting");
     window.location.replace("/thanks/");
   });
-
-  const bindThankYouRedirect = (iframe) => {
-    if (iframe.dataset.thankYouRedirectBound) return;
-    iframe.dataset.thankYouRedirectBound = "true";
-
-    let widgetReady = false;
-    const markInteraction = () => {
-      if (document.activeElement === iframe) widgetReady = true;
-    };
-    window.addEventListener("blur", markInteraction);
-    const fallbackArm = window.setTimeout(() => { widgetReady = true; }, 4000);
-
-    iframe.addEventListener("load", () => {
-      if (!widgetReady) {
-        widgetReady = true;
-        window.clearTimeout(fallbackArm);
-        return;
-      }
-      getcourseWidget.classList.add("is-redirecting");
-      window.location.replace("/thanks/");
-    });
-  };
-
-  getcourseWidget.querySelectorAll("iframe").forEach(bindThankYouRedirect);
-  new MutationObserver((mutations) => mutations.forEach((mutation) => mutation.addedNodes.forEach((node) => {
-    if (!(node instanceof Element)) return;
-    if (node.matches("iframe")) bindThankYouRedirect(node);
-    node.querySelectorAll?.("iframe").forEach(bindThankYouRedirect);
-  }))).observe(getcourseWidget, { childList: true, subtree: true });
 }
