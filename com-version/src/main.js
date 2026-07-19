@@ -6,6 +6,7 @@ import SplitType from "split-type";
 gsap.registerPlugin(ScrollTrigger);
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let lenis;
+if (reduceMotion) document.documentElement.classList.remove("hero-preload");
 
 const resetInitialScroll = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -23,6 +24,7 @@ if (!reduceMotion) {
   const softTo = { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 1.15, ease: "power2.out" };
 
   if (document.querySelector(".hero")) {
+    document.documentElement.classList.remove("hero-preload");
     const hero = gsap.timeline({ defaults: { ease: "power2.out" } });
     hero
       .from(".hero h1", { autoAlpha: 0, y: 28, filter: "blur(8px)", duration: 1.15 })

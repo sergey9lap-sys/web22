@@ -103,3 +103,14 @@
   .evolution-track i{display:block;padding:4px 0;text-align:center;line-height:1;transform:rotate(90deg)}
   .evolution-track .active{padding:15px 18px;border-color:var(--gold);background:var(--gold);color:var(--deep)}
 }
+
+/* Prevent the fully composed hero from flashing before GSAP initializes. */
+.hero-preload .hero h1,
+.hero-preload .hero .hero__lead,
+.hero-preload .hero .hero__portrait img,
+.hero-preload .hero .button,
+.hero-preload .hero .eyebrow,
+.hero-preload .hero .hero__type,
+.hero-preload .hero .hero__note,
+.hero-preload .hero .portrait-name,
+.hero-preload .hero .hero__markers span{opacity:0}
