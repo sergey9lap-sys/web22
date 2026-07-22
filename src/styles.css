@@ -4,6 +4,9 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important}}
 
 /* Independent editorial direction: cool emerald, champagne gold, framed portrait */
+.thanks-actions{display:grid;grid-template-columns:repeat(2,minmax(0,330px));gap:14px}
+.thanks-actions .button{width:100%;max-width:none}
+@media(max-width:600px){.thanks-actions{grid-template-columns:1fr;gap:10px}.thanks-actions .button{width:100%}}
 :root{--deep:#071d1e;--green:#0d3938;--green2:#17605a;--gold:#c5a75f;--gold2:#e3cd91;--muted:#9fb7b1;--line:rgba(197,167,95,.25)}
 .hero{background:linear-gradient(112deg,#071d1e 0 63%,#d8d0bd 63% 100%)}
 .hero:before{background:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px);background-size:100% 58px}
