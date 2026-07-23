@@ -7,6 +7,18 @@
 .thanks-actions{display:grid;grid-template-columns:repeat(2,minmax(0,330px));gap:14px}
 .thanks-actions .button{width:100%;max-width:none}
 @media(max-width:600px){.thanks-actions{grid-template-columns:1fr;gap:10px}.thanks-actions .button{width:100%}}
+.hero__access{width:330px;max-width:100%;margin:11px 0 0;color:var(--muted);font-size:10px;line-height:1.5;text-align:center}
+.hero__access--mobile{display:none}
+.thanks-alert{max-width:700px;margin:24px 0 0;padding:16px 18px;border-left:2px solid var(--gold);background:rgba(217,184,94,.08);color:var(--gold2);font-size:14px;line-height:1.6}
+@media(max-width:600px){
+  .hero{min-height:735px}
+  .hero__grid{min-height:735px}
+  .hero__copy>.hero__access{display:none}
+  .hero__access--mobile{display:block;position:absolute;z-index:6;left:0;top:540px;width:100%;margin:0;font-size:9px}
+  .hero__markers{top:588px}
+  .hero__markers span{white-space:normal;text-align:center}
+  .thanks-alert{font-size:12px}
+}
 :root{--deep:#071d1e;--green:#0d3938;--green2:#17605a;--gold:#c5a75f;--gold2:#e3cd91;--muted:#9fb7b1;--line:rgba(197,167,95,.25)}
 .hero{background:linear-gradient(112deg,#071d1e 0 63%,#d8d0bd 63% 100%)}
 .hero:before{background:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px);background-size:100% 58px}
@@ -110,5 +122,28 @@
 .hero-preload .hero .eyebrow,
 .hero-preload .hero .hero__type,
 .hero-preload .hero .hero__note,
+.hero-preload .hero .hero__access,
 .hero-preload .hero .portrait-name,
 .hero-preload .hero .hero__markers span{opacity:0}
+
+/* Recorded lecture CTA: supporting access note sits between the mobile button and markers. */
+@media(max-width:600px){
+  .hero{min-height:770px}
+  .hero__grid{min-height:770px}
+  .hero__access--mobile{top:562px}
+  .hero__markers{top:612px}
+}
+@media(max-width:430px){
+  .hero{min-height:855px}
+  .hero__grid{min-height:855px}
+  .hero__access--mobile{top:640px}
+  .hero__markers{top:692px}
+}
+
+/* Keep the desktop access note in normal flow below the CTA. */
+.hero__copy>.button{display:flex}
+.hero__copy>.hero__access{display:block;clear:both;margin:18px 0 0}
+@media(max-width:600px){
+  .hero__copy>.button,
+  .hero__copy>.hero__access{display:none}
+}
